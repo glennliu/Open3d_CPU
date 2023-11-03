@@ -13,6 +13,10 @@ target_sources(pipelines PRIVATE
 )
 
 target_sources(pipelines PRIVATE
+    integration/InstanceTSDFVolume.cpp
+)
+
+target_sources(pipelines PRIVATE
     odometry/Odometry.cpp
     odometry/RGBDOdometryJacobian.cpp
 )
