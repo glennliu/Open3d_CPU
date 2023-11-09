@@ -13,6 +13,7 @@ namespace pipelines {
 namespace integration {
 
 class UniformTSDFVolume;
+typedef std::shared_ptr<geometry::PointCloud> PointCloudPtr;
 
 class InstanceTSDFVolume : public ScalableTSDFVolume {
 public:
@@ -24,21 +25,20 @@ public:
     ~InstanceTSDFVolume() override;
 
 public:
+    /// Generate scan cloud from depth image. And query observed voxel points from the volume.
+    bool query_observed_points(const std::shared_ptr<geometry::PointCloud> &cloud_scan,
+                            std::shared_ptr<geometry::PointCloud> &cloud_observed);
+
+    /// @brief  Get the centroid of all volume units origin.
+    /// @return 
+    Eigen::Vector3d get_centroid();
+
+protected:
     Eigen::Vector3i LocateVolumeUnit(const Eigen::Vector3d &point) {
         return Eigen::Vector3i((int)std::floor(point(0) / volume_unit_length_),
                                (int)std::floor(point(1) / volume_unit_length_),
                                (int)std::floor(point(2) / volume_unit_length_));
     };
-
-    void extractVoxelCentroids();
-
-    bool query_observed_points(const geometry::PointCloud cloud_scan,
-                            geometry::PointCloud &cloud_observed, int min_points);
-
-protected:
-    int closet_classes_length;
-    std::vector<std::string> label_measurements;
-
 };
 
 }
