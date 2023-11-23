@@ -25,10 +25,14 @@ public:
     ~InstanceTSDFVolume() override;
 
 public:
+    std::shared_ptr<geometry::PointCloud> ExtractWeightedPointCloud(const float min_weight=0.0);
+
     /// Generate scan cloud from depth image. And query observed voxel points from the volume.
     bool query_observed_points(const std::shared_ptr<geometry::PointCloud> &cloud_scan,
                             std::shared_ptr<geometry::PointCloud> &cloud_observed);
+    
 
+    //todo: inaccurate
     /// @brief  Get the centroid of all volume units origin.
     /// @return 
     Eigen::Vector3d get_centroid();
@@ -39,6 +43,11 @@ protected:
                                (int)std::floor(point(1) / volume_unit_length_),
                                (int)std::floor(point(2) / volume_unit_length_));
     };
+
+    Eigen::Vector3d GetNormalAt(const Eigen::Vector3d &p);
+
+    double GetTSDFAt(const Eigen::Vector3d &p);
+
 };
 
 }
