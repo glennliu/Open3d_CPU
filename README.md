@@ -2,6 +2,15 @@
 <img src="https://raw.githubusercontent.com/isl-org/Open3D/master/docs/_static/open3d_logo_horizontal.png" width="320" />
 </p>
 
+## Modification note
+This is a modified version of the current Open3D. We add an instance-wise TSDF volume for reconstructing semantic instances. The following files are added or modified,
+```
+cpp/open3d/pipelines/integration/InstanceTSDFVolume.cpp
+cpp/open3d/pipelines/integration/InstanceTSDFVolume.h
+cpp/open3d/pipelines/CMakeLists.txt
+``` 
+
+
 # Open3D: A Modern Library for 3D Data Processing
 
 <h4>
@@ -17,6 +26,8 @@
     <a href="https://www.youtube.com/channel/UCRJBlASPfPBtPXJSPffJV-w">Demo</a> |
     <a href="https://github.com/isl-org/Open3D/discussions">Forum</a>
 </h4>
+
+
 
 Open3D is an open-source library that supports rapid development of software
 that deals with 3D data. The Open3D frontend exposes a set of carefully selected
